@@ -19,7 +19,7 @@ COPY backend/composer.json backend/composer.lock ./
 RUN composer install --no-dev --no-scripts --prefer-dist --no-interaction --no-progress
 COPY backend .
 RUN composer dump-autoload --no-dev --optimize --no-scripts \
-    && mkdir -p storage/framework/cache/data storage/framework/sessions storage/framework/views storage/logs \
+    && mkdir -p storage/app storage/framework/cache/data storage/framework/sessions storage/framework/views storage/logs \
     && chown -R www-data:www-data storage bootstrap/cache
 COPY --from=frontend /build/backend/public/build ./public/build
 COPY docker/apache.conf /etc/apache2/sites-available/000-default.conf

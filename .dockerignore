@@ -19,3 +19,7 @@ backend/.codex
 playwright-report
 test-results
 work
+
+**/storage/app/**
+**/storage/*.key
+**/auth.json

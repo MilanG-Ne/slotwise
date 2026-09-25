@@ -3,11 +3,14 @@ on:
   push:
     branches: [main]
   pull_request:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
   backend:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     services:
       postgres:
         image: postgres:16
@@ -29,7 +32,7 @@ jobs:
       run:
         working-directory: backend
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
@@ -41,14 +44,14 @@ jobs:
       - run: vendor/bin/phpunit
       - run: composer audit
   docker-demo:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
       - uses: pnpm/action-setup@v4
         with:
           version: '11.19.0'
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7.0.0
         with:
           node-version: '24'
           cache: pnpm
@@ -64,7 +67,7 @@ jobs:
           docker compose restart app
           docker compose up --wait --wait-timeout 120
           curl --fail http://127.0.0.1:8080/up
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7.0.1
         if: failure()
         with:
           name: browser-failure
