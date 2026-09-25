@@ -116,7 +116,7 @@ svg {
   font-size: 10px;
   letter-spacing: 0.15em;
   font-weight: 700;
-  color: #7a8178;
+  color: #62705b;
 }
 .light {
   color: #bdcdbb;
@@ -210,7 +210,7 @@ svg {
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 0.16em;
-  color: #849490;
+  color: #a6b7ab;
   margin: 0 12px 12px;
 }
 nav {
@@ -326,7 +326,7 @@ nav a.active {
   color: var(--muted);
 }
 .breadcrumb span {
-  color: #bdc1b8;
+  color: #707968;
 }
 .breadcrumb strong {
   color: #535d55;
@@ -350,7 +350,7 @@ nav a.active {
   border: 1px solid #e4e5dc;
   border-radius: 4px;
   padding: 5px 7px;
-  color: #797e74;
+  color: #62705b;
   background: #fafaf6;
 }
 main#main {
@@ -465,7 +465,7 @@ main#main {
   color: #ac8460;
 }
 .stats > div > div > span {
-  color: #84897e;
+  color: #62705b;
   font-size: 10px;
 }
 .stats strong {
@@ -514,7 +514,7 @@ main#main {
   border: 1px solid #e8e9e1;
   padding: 2px 6px;
   border-radius: 4px;
-  color: #7a8278;
+  color: #62705b;
 }
 .date-controls {
   display: flex;
@@ -550,7 +550,7 @@ main#main {
   border-radius: 7px;
   background: #fffefb;
   padding: 10px 5px;
-  color: #8b9186;
+  color: #62705b;
 }
 .week-strip > button span {
   font-size: 10px;
@@ -596,7 +596,7 @@ main#main {
 .week-message p {
   font-size: 11px;
   line-height: 1.7;
-  color: #969c8e;
+  color: #62705b;
 }
 .week-message strong {
   font-weight: 500;
@@ -618,7 +618,7 @@ main#main {
   padding: 6px 10px;
   border: 0;
   background: none;
-  color: #8a9086;
+  color: #62705b;
   font-size: 10px;
   border-radius: 5px;
 }
@@ -631,7 +631,7 @@ main#main {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #98a08f;
+  color: #62705b;
   margin: 0;
 }
 .search input {
@@ -653,7 +653,7 @@ main#main {
   flex-shrink: 0;
   font-size: 8px;
   letter-spacing: 0.12em;
-  color: #8d9589;
+  color: #62705b;
 }
 .hour-labels {
   position: relative;
@@ -661,7 +661,7 @@ main#main {
   justify-content: space-between;
   width: 100%;
   font-size: 8px;
-  color: #9ba292;
+  color: #62705b;
 }
 .hour-labels span {
   width: 0;
@@ -720,7 +720,7 @@ main#main {
   align-items: center;
   gap: 3px;
   margin-top: 5px;
-  color: #949a8e;
+  color: #62705b;
   font-size: 8px;
 }
 .row-arrow {
@@ -746,7 +746,7 @@ main#main {
   border: 1px solid #dbe3cf;
   border-left: 3px solid #adbfa0;
   background: #edf1e8;
-  color: #6c7b61;
+  color: #536447;
   border-radius: 5px;
   padding: 9px 7px;
   text-align: left;
@@ -772,19 +772,19 @@ main#main {
   display: block;
   font-style: normal;
   margin-top: 2px;
-  opacity: 0.8;
+  opacity: 1;
 }
 .slot.studio {
   background: #f1eaf7;
   border-color: #e2d7eb;
   border-left-color: #bda3d0;
-  color: #897299;
+  color: #735882;
 }
 .slot.equipment {
   background: #fbefe3;
   border-color: #efddc9;
   border-left-color: #d6b48f;
-  color: #a7835c;
+  color: #88613b;
 }
 .slot.mine {
   background: #e1eccf;
@@ -805,7 +805,7 @@ main#main {
   align-items: center;
   padding: 14px 24px;
   font-size: 8px;
-  color: #8f9788;
+  color: #62705b;
 }
 .schedule-footer > span {
   display: flex;
@@ -860,7 +860,7 @@ main#main {
 }
 .bottom-banner p {
   font-size: 10px;
-  color: #8b927e;
+  color: #62705b;
   margin-top: 4px;
 }
 .bottom-banner a {
@@ -876,7 +876,7 @@ main#main {
   display: flex;
   justify-content: space-between;
   padding-top: 28px;
-  color: #9a9f94;
+  color: #62705b;
   font-size: 9px;
 }
 .footer-dot {
@@ -909,7 +909,7 @@ main#main {
 .booking-date small {
   font-size: 9px;
   text-transform: uppercase;
-  color: #858f74;
+  color: #62705b;
 }
 .booking-date strong {
   font-size: 19px;
@@ -928,7 +928,7 @@ main#main {
 }
 .status-pill {
   font-size: 9px;
-  color: #6a8154;
+  color: #536b3d;
   background: #edf3e6;
   border: 1px solid #dce7d0;
   padding: 3px 7px;
@@ -938,11 +938,11 @@ main#main {
 .status-pill.neutral {
   background: #f1f0eb;
   border-color: #e3e2dc;
-  color: #97958c;
+  color: #62705b;
 }
 .cancelled .booking-info {
   text-decoration: line-through;
-  color: #91978c;
+  color: #62705b;
 }
 .resource-grid {
   display: grid;
@@ -964,7 +964,7 @@ main#main {
   align-items: center;
   justify-content: center;
   background: #e5eadb;
-  color: #829975;
+  color: #526644;
   overflow: hidden;
 }
 .resource-art > svg {
@@ -993,7 +993,7 @@ main#main {
 }
 .studio .resource-art {
   background: #eae2ef;
-  color: #9981aa;
+  color: #705681;
 }
 .studio .resource-art-circle {
   border-color: #b8a7c777;
@@ -1003,7 +1003,7 @@ main#main {
 }
 .equipment .resource-art {
   background: #eee4d5;
-  color: #b79975;
+  color: #795735;
 }
 .resource-card-body {
   padding: 21px;
@@ -1033,7 +1033,7 @@ main#main {
   gap: 7px;
   margin-bottom: 20px;
   font-size: 10px;
-  color: #8b9380;
+  color: #62705b;
 }
 .resource-facts span {
   display: flex;
@@ -1188,7 +1188,7 @@ label textarea {
   padding: 12px;
   background: #f2f5eb;
   border-radius: 5px;
-  color: #80906e;
+  color: #62705b;
   font-size: 11px;
 }
 .form-note {
@@ -1197,7 +1197,7 @@ label textarea {
   justify-content: center;
   gap: 6px;
   font-size: 9px;
-  color: #939d89;
+  color: #62705b;
   margin-top: 18px;
 }
 .checkbox {
@@ -1214,7 +1214,7 @@ label textarea {
 .detail-kind {
   display: inline-block;
   background: #edf1e5;
-  color: #6b8058;
+  color: #526d3d;
   border-radius: 4px;
   padding: 5px 10px;
   font-size: 12px;
@@ -1336,7 +1336,7 @@ label textarea {
 .login-story .login-footer {
   font-size: 10px;
   margin-top: 15px;
-  color: #7e9789;
+  color: #a2b8a8;
 }
 .login-form {
   padding: 60px 45px;
@@ -1371,7 +1371,7 @@ label textarea {
 }
 .demo-panel p {
   font-size: 11px;
-  color: #7f8b73;
+  color: #62705b;
   margin: 8px 0 16px;
 }
 .demo-buttons {
@@ -1397,13 +1397,13 @@ label textarea {
   display: block;
   margin-top: 15px;
   font-size: 9px;
-  color: #87917c;
+  color: #62705b;
 }
 .login-trust {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #939d89;
+  color: #62705b;
   font-size: 9px;
   margin-top: 30px;
 }
@@ -1796,7 +1796,7 @@ label textarea {
     border-radius: 4px;
     padding: 8px 10px;
     font-size: 10px;
-    color: #849373;
+    color: #62705b;
   }
   .mobile-slot strong {
     font-size: 10px;
@@ -1806,7 +1806,7 @@ label textarea {
     background: #e6efd9;
     border-color: #d4e1c1;
     border-left-color: #93ae78;
-    color: #5c7d40;
+    color: #48662f;
   }
   .schedule-footer {
     font-size: 9px;

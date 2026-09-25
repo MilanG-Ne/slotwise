@@ -9,7 +9,7 @@ COPY index.html tsconfig.json vite.config.ts vitest.config.ts ./
 RUN pnpm build
 
 FROM php:8.4-apache-bookworm
-RUN apt-get update && apt-get install -y --no-install-recommends libpq-dev libonig-dev \
+RUN apt-get update && apt-get install -y --no-install-recommends libpq-dev libonig-dev unzip curl \
     && docker-php-ext-install -j"$(nproc)" pdo_pgsql mbstring opcache \
     && a2enmod rewrite headers \
     && rm -rf /var/lib/apt/lists/*
