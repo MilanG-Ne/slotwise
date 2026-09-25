@@ -34,6 +34,7 @@ class BookingTest extends TestCase
 
         $response->assertCreated()->assertJsonPath('data.starts_at', '2026-09-26T08:00:00+00:00')->assertJsonPath('data.ends_at', '2026-09-26T09:00:00+00:00')->assertJsonPath('data.mine', true);
         $this->assertDatabaseHas('bookings', ['id' => $response->json('data.id'), 'user_id' => $owner->id, 'cancelled_at' => null]);
+        $this->getJson('/api/bookings?date=2026-09-26')->assertOk()->assertJsonPath('data.0.starts_at', '2026-09-26T08:00:00+00:00')->assertJsonPath('data.0.ends_at', '2026-09-26T09:00:00+00:00');
     }
 
     public function test_returns_409_for_overlapping_booking_without_changing_existing_one(): void

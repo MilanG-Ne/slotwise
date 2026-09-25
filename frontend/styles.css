@@ -1927,3 +1927,27 @@ label textarea {
     scroll-behavior: auto !important;
   }
 }
+
+/* User-entered names must not widen a narrow schedule or resource card. */
+.resource-label > span:not(.resource-icon),
+.booking-info {
+  min-width: 0;
+}
+.resource-label strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.resource-card h2,
+.resource-card p,
+.booking-info strong,
+.booking-info small,
+.resource-facts span,
+.mobile-slot strong {
+  overflow-wrap: anywhere;
+}
+.mobile-slot {
+  min-width: 0;
+}
+.mobile-slot > span {
+  flex-shrink: 0;
+}

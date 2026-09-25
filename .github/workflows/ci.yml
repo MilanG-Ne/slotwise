@@ -15,6 +15,7 @@ jobs:
           POSTGRES_DB: slotwise_test
           POSTGRES_USER: slotwise
           POSTGRES_PASSWORD: testing
+          TZ: Europe/Belgrade
         ports: ['5432:5432']
         options: --health-cmd "pg_isready -U slotwise -d slotwise_test" --health-interval 5s --health-timeout 5s --health-retries 10
     env:
