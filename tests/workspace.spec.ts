@@ -197,3 +197,43 @@ test("HTTP boundary rejects missing CSRF and member administration", async ({
   });
   expect(forbidden.status()).toBe(403);
 });
+
+test("a refreshed CSRF session keeps the calendar attached and permits retry", async ({
+  page,
+}) => {
+  await login(page);
+  const date = await page.getByLabel("Schedule date").inputValue();
+  const title = `Session retry ${Date.now()}`;
+  await page.getByRole("button", { name: "New booking", exact: true }).click();
+  await page.getByLabel("What’s the plan?").fill(title);
+  await page.getByLabel("Date", { exact: true }).fill(addDays(date, 14));
+  await page.getByLabel("Start time").selectOption("12:00");
+  await page.route(
+    "**/api/bookings",
+    (route) =>
+      route.fulfill({
+        status: 419,
+        contentType: "application/json",
+        body: "{}",
+      }),
+    { times: 1 },
+  );
+  const sessionRefresh = page.waitForResponse(
+    (response) =>
+      response.url().endsWith("/api/session") && response.status() === 200,
+  );
+  await page.getByRole("button", { name: "Confirm booking" }).click();
+  await sessionRefresh;
+  await expect(page.getByRole("alert")).toContainText("Your session changed");
+  await page.getByRole("button", { name: "Confirm booking" }).click();
+  await expect(page.getByRole("dialog")).toHaveCount(0);
+  await page.getByRole("link", { name: /My bookings/ }).click();
+  const row = page.getByRole("button").filter({ hasText: title });
+  await expect(row).toBeVisible();
+  await row.click();
+  await page
+    .getByRole("button", { name: "Cancel booking", exact: true })
+    .click();
+  await page.getByRole("button", { name: "Yes, cancel booking" }).click();
+  await expect(row).toContainText("Cancelled");
+});

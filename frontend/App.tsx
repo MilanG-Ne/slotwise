@@ -49,8 +49,6 @@ export default function App() {
   });
   useEffect(() => {
     const expired = () => {
-      query.cancelQueries();
-      query.removeQueries({ queryKey: ["bookings"] });
       query.invalidateQueries({ queryKey: ["session"] });
     };
     window.addEventListener("session-expired", expired);

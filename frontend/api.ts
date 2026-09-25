@@ -30,7 +30,7 @@ export async function api<T>(
     throw new ApiError(
       response.status,
       response.status === 419
-        ? "Your session expired. Sign in again."
+        ? "Your session changed. Please try again."
         : body.message || "Something went wrong. Please try again.",
       body.errors,
     );
