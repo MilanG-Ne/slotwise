@@ -1,0 +1,74 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: slotwise_test
+          POSTGRES_USER: slotwise
+          POSTGRES_PASSWORD: testing
+        ports: ['5432:5432']
+        options: --health-cmd "pg_isready -U slotwise -d slotwise_test" --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DB_CONNECTION: pgsql
+      DB_HOST: 127.0.0.1
+      DB_PORT: 5432
+      DB_DATABASE: slotwise_test
+      DB_USERNAME: slotwise
+      DB_PASSWORD: testing
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: pdo_pgsql, mbstring, dom
+          coverage: none
+      - run: composer install --no-interaction --prefer-dist --no-progress
+      - run: composer validate --strict
+      - run: vendor/bin/pint --test
+      - run: vendor/bin/phpunit
+      - run: composer audit
+  docker-demo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: '11.19.0'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build && pnpm test
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: docker compose up --build --wait --wait-timeout 180
+      - run: pnpm test:e2e
+        env:
+          E2E_URL: http://127.0.0.1:8080
+      - name: Verify restart preserves the demo
+        run: |
+          docker compose restart app
+          docker compose up --wait --wait-timeout 120
+          curl --fail http://127.0.0.1:8080/up
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: browser-failure
+          path: |
+            playwright-report/
+            test-results/
+      - if: always()
+        run: docker compose logs --no-color && docker compose down --volumes

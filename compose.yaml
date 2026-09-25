@@ -1,0 +1,51 @@
+services:
+  app:
+    build: .
+    ports:
+      - "127.0.0.1:${SLOTWISE_PORT:-8080}:80"
+    environment:
+      APP_NAME: Slotwise
+      APP_ENV: production
+      APP_DEBUG: "false"
+      APP_URL: http://localhost:${SLOTWISE_PORT:-8080}
+      LOG_CHANNEL: stderr
+      DB_CONNECTION: pgsql
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_DATABASE: slotwise
+      DB_USERNAME: slotwise
+      DB_PASSWORD: slotwise-local-only
+      SESSION_DRIVER: database
+      SESSION_ENCRYPT: "true"
+      SESSION_SECURE_COOKIE: "false"
+      CACHE_STORE: database
+      QUEUE_CONNECTION: sync
+      WORKSPACE_TIMEZONE: Europe/Belgrade
+      DEMO_MODE: "true"
+    volumes:
+      - app_storage:/var/www/html/storage
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost/up"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 30s
+  db:
+    image: postgres:16-bookworm
+    environment:
+      POSTGRES_DB: slotwise
+      POSTGRES_USER: slotwise
+      POSTGRES_PASSWORD: slotwise-local-only
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U slotwise -d slotwise"]
+      interval: 3s
+      timeout: 3s
+      retries: 15
+volumes:
+  db_data:
+  app_storage:
