@@ -63,10 +63,7 @@ jobs:
         env:
           E2E_URL: http://127.0.0.1:8080
       - name: Verify restart preserves the demo
-        run: |
-          docker compose restart app
-          docker compose up --wait --wait-timeout 120
-          curl --fail http://127.0.0.1:8080/up
+        run: python3 tests/docker-restart.py
       - uses: actions/upload-artifact@v7.0.1
         if: failure()
         with:
