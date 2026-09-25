@@ -42,7 +42,7 @@ while True:
     try:
         restored = request("/api/session")
         break
-    except (urllib.error.URLError, TimeoutError):
+    except (urllib.error.URLError, TimeoutError, ConnectionError):
         if time.monotonic() >= deadline:
             raise
         time.sleep(1)
